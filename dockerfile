@@ -15,4 +15,10 @@ RUN apt update && apt install -y \
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 \
     && update-alternatives --config python3
 
-RUN pip3 install --upgrade pip
+WORKDIR /opt/odoo18
+
+COPY requirements.txt /opt/odoo18/
+
+RUN pip3 install -r requirements.txt
+
+
