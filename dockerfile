@@ -19,6 +19,6 @@ WORKDIR /opt/odoo18
 
 COPY requirements.txt /opt/odoo18/
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt --break-system-packages
 
 
