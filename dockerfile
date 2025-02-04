@@ -15,4 +15,4 @@ RUN apt update && apt install -y \
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 \
     && update-alternatives --config python3
 
-RUN python3 -m pip install --upgrade pip
+RUN pip3 install --upgrade pip
