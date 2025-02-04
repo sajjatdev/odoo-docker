@@ -57,10 +57,22 @@ RUN apt update && apt install -y \
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1 \
     && update-alternatives --config python3
 
+
 WORKDIR /opt/odoo18
 
-COPY requirements.txt /opt/odoo18/
+COPY . /opt/odoo18/
 
 RUN pip3 install -r requirements.txt --break-system-packages
 
+COPY ./odoo.conf /etc/odoo/
 
+RUN chown odoo /etc/odoo/odoo.conf \
+    && mkdir -p /mnt/extra-addons \
+    && chown -R odoo /mnt/extra-addons
+VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
+
+# Expose Odoo services
+EXPOSE 8069 8071 8072
+
+# Set the default config file
+ENV ODOO_RC /etc/odoo/odoo.conf
