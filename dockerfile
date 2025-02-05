@@ -67,12 +67,12 @@ RUN pip3 install -r requirements.txt --break-system-packages
 COPY ./odoo.conf /etc/odoo/
 
 
-RUN mkdir -p /mnt/extra-addons \
-    && chown -R odoo /mnt/extra-addons
+RUN mkdir -p /mnt/extra-addons
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
 # Expose Odoo services
 EXPOSE 8069 8071 8072
 
-# Set the default config file
-ENV ODOO_RC /etc/odoo/odoo.conf
+CMD [ "python3","/opt/odoo18/odoo-bin","-c","/etc/odoo/odoo.conf"]
+
+
