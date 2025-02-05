@@ -64,7 +64,7 @@ COPY . /opt/odoo18/
 
 RUN pip3 install -r requirements.txt --break-system-packages
 
-COPY ./odoo.conf /etc/
+COPY odoo.conf /etc/
 
 
 RUN mkdir -p /mnt/extra-addons
